@@ -3,7 +3,7 @@ This is for Project1
 
 
 Index.html
-  -log in form: take in username and password, use login.py to access the mysql database and verify user and pass, action=""
+  -log in form: take in username and password, use login.py to access the mysql database and verify user and pass, action="index.py"
   -link to signup.html
 index.py
   -connects to mysql database, checks user and pass, return True or False
