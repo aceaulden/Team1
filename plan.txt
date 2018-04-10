@@ -3,13 +3,7 @@ This is for Project1
 
 
 Index.html
-  -log in form: take in username and password, use login.py to access the mysql database and verify user and pass, action="index.py"
-  -link to signup.html
-index.py
-  -connects to mysql database, checks user and pass, return True or False
-
-signup.html
-  -form: take in name, username, password and user role (regular or admin), call action="signup.py"
-
-signup.py
-  -signup.py stores username, password, name and user role in mysql database
+  -log in form: take in username and password, use index.py to access the mysql database and verify user and pass, action="index.py"
+  -sign up form: takes in username, name and pass, then uses index.py to acess mysql and create a user
+Index.py
+  -uses class file user
