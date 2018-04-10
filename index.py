@@ -1,5 +1,5 @@
 import cgi,cgitb
-from song import song
+#from song import song
 
 cgitb.enable()
 
@@ -7,8 +7,6 @@ import mysql.connector
 from mysql.connector import errorcode
 
 import config
-
-
 
 try:
   cnx = mysql.connector.connect(user=config.USER,
