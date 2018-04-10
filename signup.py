@@ -1,5 +1,9 @@
+#!/usr/bin/env python3
+
+#file to add a username and pass to the database
+#connects to MYSQL with error checking, then tries to add a user/pass to the databse using class 'user' (at the bottom of the file)
+
 import cgi,cgitb
-#from song import song
 
 cgitb.enable()
 
