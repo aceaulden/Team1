@@ -73,6 +73,7 @@ if loginButton:
   legit = user.authenticateUser(cursor, user, password)
   if (legit):
     #user is in database
+    #redirect to messageBoard.html
   else:
     #user is not in database
     
