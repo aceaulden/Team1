@@ -74,6 +74,7 @@ if loginButton:
   if (legit):
     #user is in database
     #redirect to messageBoard.html
+    return HttpResponseRedirect('/messageBoard.html')
   else:
     #user is not in database
     print('<h2>Invalid login</h2'>)
