@@ -1,7 +1,10 @@
-import hashlib, time, os, shelve
+#!/usr/bin/env python3
+import config #config file
+import mysql.connector #database connector
+from mysql.connector import errorcode #error for mysql
+import hashlib, time, os, shelve, cgi
 from http import cookies
-
-import cgitb;
+import cgitb
 
 cgitb.enable()
 
@@ -16,6 +19,7 @@ try:
                                 password = config.PASSWORD,
                                 host = config.HOST,
                                 database=config.DATABASE)
+				#connect to database using config.py parameters
 
 #check for errors
 except mysql.connector.Error as err:
@@ -68,13 +72,16 @@ def sessionAuthenticate():
 
 def generateMessageBoard():
     HTML = "<h2> Welcome To A Better Facebook </h2>"
-    for x in y:
+    #parse database for stored messages from Messages table
+    query = "SELECT * from Messages ORDER BY Timestamp ASC"  #query to get all messages
+    cursor.execute(query) 
+    for (Username,Timestamp,Message) in cursor:#goes through message table one by one
         HTML += "\n<div class=\"container\">"
         HTML += "\n<img src=\"" + USRIMG + "\"alt=\"Avatar\" style=\"width:100%;\">"
-        HTML += "\n<p>" + USRMSG + "</p>"
-        HTML += "\n<span clgass=\"time-right\">" + USRTIME + "</span>"
+        HTML += "\n<p>" + Message + "</p>"
+        HTML += "\n<span clgass=\"time-right\">" + Timestamp + "</span>"
         HTML += "\n</div>"
-
+    return HTML #return full HTML string
 def addUserLog():
         USRMSG= form.getValue("message")
         USRTIME= form.getValue("time")
@@ -82,4 +89,13 @@ def addUserLog():
         cursor.execute(query,sid)
         for row in cursor:
             print(row)
-            
+def deleteMessage(): #this will 
+
+def main():
+	(issession,sid) = sessionAuthenticate()       
+	print(issession)
+	print(sid)
+
+
+
+main()     
