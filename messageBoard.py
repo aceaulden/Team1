@@ -90,6 +90,9 @@ def addUserLog():
         for row in cursor:
             print(row)
 def deleteMessage(): #this will 
+	USRTIME = form.getVValue("time")
+	query = "DELETE FROM Messages WHERE TDate=%s;"
+	cursor.execute(query, USRTIME)
 
 def main():
 	(issession,sid) = sessionAuthenticate()       
