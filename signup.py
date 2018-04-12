@@ -11,10 +11,10 @@ class user:
   #songID is AUTO_INCREMENT and votes has a default of 0, so no need to worry about them
   def addUser(cursor, user, password):
     #create query statement
-    query = "Insert into Users(Username, Password) values ('" + user + "','" + password + "')"
+    query = "Insert into Users(Username, Password) values (%s, PASSWORD(%s) )"   # + user + "','" + password + "')"
     #execute the query
     try:
-      cursor.execute(query) 
+      cursor.execute(query, user, password) 
       print ("<p> Executed statement: " + cursor.statement + "</p>")
     except mysql.connector.Error as err:
       #for DEBUG only we'll print the error - we should print some generic message instead for production site
@@ -34,6 +34,18 @@ class user:
 
 def authenticateUser(cursor, user, pass): 
   #if user and pass is correct and in database return True
+  query = "SELECT Password FROM Users WHERE Username = %s'    #gives hashed password in database
+  cursor.execute(query, user)
+  hashedpass = cursor.lastrow
+  if (hashedpass == Null):
+    return False
+  query2 = "SELECT PASSWORD(%s); "
+  cursor.execeute(query2, pass)
+  givenpass = cursor.lastrow
+  if (givenpass == hashedpass):
+    return True
+  else:
+    return False
     
 """
   def printUsers(cursor):
