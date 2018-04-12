@@ -76,6 +76,7 @@ if loginButton:
     #redirect to messageBoard.html
   else:
     #user is not in database
+    print('<h2>Invalid login</h2'>)
     
     
     
