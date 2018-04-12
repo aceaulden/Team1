@@ -71,10 +71,10 @@ if loginButton:
   password = params.getvalue("pass")
   #call authenticaTeUser
   legit = user.authenticateUser(cursor, user, password)
-  if (legit):
-    #user is in database
-    #redirect to messageBoard.html
-    return HttpResponseRedirect('/messageBoard.html')
+  if (legit):    #user is in database
+    #generate a random session ID cookie that has a set expiration date 
+    return HttpResponseRedirect('/messageBoard.html')        #redirect to messageBoard.html
+  
   else:
     #user is not in database
     print('<h2>Invalid login</h2'>)
