@@ -50,10 +50,10 @@ insertButton = params.getvalue("Sign Up")
 if insertButton:
   #get the artist and title from the form
   user = params.getvalue("user")
-  pass = params.getvalue("pass")
+  password = params.getvalue("pass")
 
   #call the add song function in song to insert the song
-  result = user.addUser(cursor, user, pass)
+  result = user.addUser(cursor, user, password)
   #print either a confirmation message or error message
   if result:
     print ('<h2>New user with id ' + str(result) + ' inserted into the database</h2>')
@@ -68,9 +68,9 @@ loginButton = params.getvalue("Login")
 if loginButton:
   #get the artist and title from the form
   user = params.getvalue("user")
-  pass = params.getvalue("pass")
+  password = params.getvalue("pass")
   #call authenticaTeUser
-  legit = user.authenticateUser(cursor, user, pass)
+  legit = user.authenticateUser(cursor, user, password)
   if (legit):
     #user is in database
   else:
