@@ -73,13 +73,13 @@ def sessionAuthenticate():
 def generateMessageBoard():
     HTML = "<h2> Welcome To A Better Facebook </h2>"
     #parse database for stored messages from Messages table
-    query = "SELECT * from Messages ORDER BY Timestamp ASC"  #query to get all messages
+    query = "SELECT * from Messages ORDER BY Date ASC;"  #query to get all messages
     cursor.execute(query) 
-    for (Username,Timestamp,Message) in cursor:#goes through message table one by one
+    for (Username,TDate,Message) in cursor:#goes through message table one by one
         HTML += "\n<div class=\"container\">"
         HTML += "\n<img src=\"" + USRIMG + "\"alt=\"Avatar\" style=\"width:100%;\">"
         HTML += "\n<p>" + Message + "</p>"
-        HTML += "\n<span clgass=\"time-right\">" + Timestamp + "</span>"
+        HTML += "\n<span clgass=\"time-right\">" + TDate + "</span>"
         HTML += "\n</div>"
     return HTML #return full HTML string
 def addUserLog():
