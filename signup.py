@@ -9,9 +9,9 @@ class user:
 
   #add a user to the database
   #songID is AUTO_INCREMENT and votes has a default of 0, so no need to worry about them
-  def addUser(cursor, user, pass):
+  def addUser(cursor, user, password):
     #create query statement
-    query = "Insert into Users(user, pass) values ('" + user + "','" + pass + "')"
+    query = "Insert into Users(Username, Password) values ('" + user + "','" + password + "')"
     #execute the query
     try:
       cursor.execute(query) 
@@ -28,7 +28,7 @@ class user:
 
     if nbRowsInserted > 0:
 
-      return userID
+      return Username
     else:
       return False
 
