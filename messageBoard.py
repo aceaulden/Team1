@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 import config #config file
 import mysql.connector #database connector
@@ -120,27 +119,8 @@ def deleteMessage(): #this will
 	cursor.execute(query, USRTIME)
 
 def postMessage():
-<<<<<<< HEAD
-    HTML = "<form action=\"/action_page.php\" id=\"usrform\"> Name: <input type=\"text\" name= usrname\"> <input type=\"submit\"></form><textarea rows=\"4\" cols=\"50\"> </textarea>"
-    return(HTML)
-def managerOfSession(sid):
-    HTML = None
-    defaultPageGen = 1
-    if defaultPageGen == 1:
-        print(config.HEADER)
-        print(config.BODY)
-        HTML = generateMessageBoard(sid)
-        if HTML == None:
-            print('''
-            No Messages For You
-            ''')
-        print(postMessage())
-        print(config.FOOTER)
-
-=======
     HTML = "<form action=\"./messageBoard.py\" method = \"post\" id=\"usrform\"><textarea name = \"message\" rows=\"4\" cols=\"50\"> </textarea><br><input name = \"insert\" type=\"submit\"></form>"
     return(HTML)
->>>>>>> refs/remotes/origin/master
 
 def managerOfSession(sid):
     HTML = None
@@ -154,10 +134,6 @@ def managerOfSession(sid):
 
 def main():
     (issession,sid) = sessionAuthenticate()
-<<<<<<< HEAD
-    print(issession)
-=======
->>>>>>> refs/remotes/origin/master
     if 1 == 1:
         managerOfSession(sid)
     else:
