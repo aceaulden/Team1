@@ -43,15 +43,16 @@ def main():
     cursor = cnx.cursor()
     if len(params) == 3:
         #return
-        signup(cursor)
+        returnval = signup(cursor)
     else:
         #return
-        logon(cursor)
+        returnval = logon(cursor)
     cursor.close()   #commit the transaction
     cnx.commit()  #this is really important otherwise all changes lost
     #close connection
     cnx.close()
-    quit()
+    return returnval
+    #quit()
 
 
 #code for inserting a user
@@ -59,7 +60,7 @@ def main():
 
 #if insert button was pushed
 def signup(cursor):
-    #get the artist and title from the form
+    #get the artist and du to inform them of the time this error occurred, and the actions you performed just before this error.More information about this error may be available in the server errortitle from the form
     user = params.getvalue("user")
     password = params.getvalue("pass")
     name = params.getvalue("name")
@@ -80,15 +81,33 @@ def signup(cursor):
 def logon(cursor):
     #cursor = connect()
     #get the artist and title from the form
-    username = params.getvalue("Username")
-    password = params.getvalue("Password")
+    username = params.getvalue("user")
+    password = params.getvalue("pass")
     #call authenticaTeUser
     legit = users.authenticateUser(users, cursor, username, password)
 
     if (legit):    #user is in database
         #generate a random session ID cookie that has a set expiration date
-        print('<h3>redirect</h3>')
+        print ( "Content-type: text/html" )
+        print( "Status: 303 See Other" )
+        print( "Location: messageBoard.py" )
+        print()
+        print ("""\
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <meta charset = "utf-8">
+          <title>DB connection with Python</title>
+          <style type = "text/css">
+          table, td, th {border:1px solid black}
+          </style>
+          </head>
+          <body>
+          """)
+
+        #print('<h3>redirect</h3>')
         #return HttpResponseRedirect('messageBoard.html')        #redirect to messageBoard.html
+        print("</body></html>")
     else:
     #user is not in database
         print('<h2>Invalid login</h2>')

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 import config #config file
 import mysql.connector #database connector
@@ -70,18 +71,30 @@ def sessionAuthenticate():
          message = '<p>No sid - no session </p>'
          return(issession,sid)
 
-def generateMessageBoard():
+
+
+def generateMessageBoard(sid):
+    if 1 == 0:
+        sessionFile = '/tmp/sess_' + sid
+        session = shelve.open(sessionFile, writeback=True)
+        uname = session.get("username")
+        utype = session.get("role")
+
     HTML = "<h2> Welcome To A Better Facebook </h2>"
     #parse database for stored messages from Messages table
-    query = "SELECT * from Messages ORDER BY Date ASC;"  #query to get all messages
-    cursor.execute(query) 
+    query = "SELECT * from Messages ORDER BY TDate ASC;"  #query to get all messages
+    cursor.execute(query)
     for (Username,TDate,Message) in cursor:#goes through message table one by one
         HTML += "\n<div class=\"container\">"
         HTML += "\n<img src=\"" + USRIMG + "\"alt=\"Avatar\" style=\"width:100%;\">"
         HTML += "\n<p>" + Message + "</p>"
         HTML += "\n<span clgass=\"time-right\">" + TDate + "</span>"
+        if Username == uname or utype == "admin":
+            HTML += "\n<button type = \"button\"> DELETE </button> "
         HTML += "\n</div>"
+
     return HTML #return full HTML string
+
 def addUserLog():
         USRMSG= form.getValue("message")
         USRTIME= form.getValue("time")
@@ -89,16 +102,36 @@ def addUserLog():
         cursor.execute(query,sid)
         for row in cursor:
             print(row)
-def deleteMessage(): #this will 
+
+def deleteMessage(): #this will
 	USRTIME = form.getVValue("time")
 	query = "DELETE FROM Messages WHERE TDate=%s;"
 	cursor.execute(query, USRTIME)
 
+def postMessage():
+    HTML = "<form action=\"/action_page.php\" id=\"usrform\"> Name: <input type=\"text\" name= usrname\"> <input type=\"submit\"></form><textarea rows=\"4\" cols=\"50\"> </textarea>"
+    return(HTML)
+def managerOfSession(sid):
+    HTML = None
+    defaultPageGen = 1
+    if defaultPageGen == 1:
+        print(config.HEADER)
+        print(config.BODY)
+        HTML = generateMessageBoard(sid)
+        if HTML == None:
+            print('''
+            No Messages For You
+            ''')
+        print(postMessage())
+        print(config.FOOTER)
+
+
+
 def main():
-	(issession,sid) = sessionAuthenticate()       
-	print(issession)
-	print(sid)
-
-
-
-main()     
+    (issession,sid) = sessionAuthenticate()
+    print(issession)
+    if 1 == 1:
+        managerOfSession(sid)
+    else:
+        print("error")
+main()
