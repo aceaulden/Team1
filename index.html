@@ -6,32 +6,28 @@
 <h2>Login Form</h2>
 
 <!-- Initial form with log in fields and sign up button -->
-<form action="index.py">
+<form action="./index.py" method="get">
+
   Username:<br>
-  <input type="text" name="firstname" value="Username">
+  <input type="text" name="user" value="Username" required>
   <br>
   Password:<br>
-  <input type="text" name="password" value="Password">
+  <input type="password" name="pass" value="Password" required>
   <br><br>
-  <input type="submit" value="Login" onlick="./index.py">
+  <input type="submit" value="Login" >
 </form>
-<<<<<<< HEAD
+
 <br>
 <br>
-<form action="/action_page.php">
-=======
-<br>              
-<br>                                         
-<form action="/index.py">
->>>>>>> 9f371c8c555d2f622da15cd82e11e57537c2ae99
+<form action="index.py" method="get">
   Username:<br>
-  <input type="text" name="user" value="Username">
+  <input type="text" name="user" value="Username" required>
   <br>
-  Name: <input type="text" name="name" value="Name">
+  Name: <br><input type="text" name="name" value="Name" required>
   <br>
-  Password: <input type="hidden" name="password" value="Password">
+  Password: <br><input type="pass" name="password" value="Password" required>
   <br>
-  <input type="button" value="Sign Up" onclick="/index.py">
+  <input type="button" value="Sign Up" onclick="index.py">
 </form>
 
 
