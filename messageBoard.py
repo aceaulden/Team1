@@ -50,6 +50,17 @@ except mysql.connector.Error as err:
 #create cursor to send queries
 cursor = cnx.cursor()
 
+insertButton = form.getvalue("insert")
+
+#if insert button was pushed
+if insertButton:
+    message = form.getValue("message")
+    issession,sid = sessionAuthenticate()
+    uname = session.get("username")
+    query = "INSERT INTO Messages (Username,TDate,Message) VALUES (%s,%s,%s);"
+    time = time.asctime(time.localtime(time.time()))
+    cursor.execute(query,uname,str(time),message)
+    main()
 
 def sessionAuthenticate():
     cookie = cookies.SimpleCookie()
@@ -108,27 +119,21 @@ def deleteMessage(): #this will
 	cursor.execute(query, USRTIME)
 
 def postMessage():
-    HTML = "<form action=\"/action_page.php\" id=\"usrform\"> Name: <input type=\"text\" name= usrname\"> <input type=\"submit\"></form><textarea rows=\"4\" cols=\"50\"> </textarea>"
+    HTML = "<form action=\"./messageBoard.py\" method = \"post\" id=\"usrform\"><textarea name = \"message\" rows=\"4\" cols=\"50\"> </textarea><br><input name = \"insert\" type=\"submit\"></form>"
     return(HTML)
+
 def managerOfSession(sid):
     HTML = None
     defaultPageGen = 1
     if defaultPageGen == 1:
         print(config.HEADER)
         print(config.BODY)
-        HTML = generateMessageBoard(sid)
-        if HTML == None:
-            print('''
-            No Messages For You
-            ''')
+        print(generateMessageBoard(sid))
         print(postMessage())
         print(config.FOOTER)
 
-
-
 def main():
     (issession,sid) = sessionAuthenticate()
-    print(issession)
     if 1 == 1:
         managerOfSession(sid)
     else:

@@ -4,8 +4,14 @@ body {
     margin: 0 auto;
     max-width: 800px;
     padding: 0 20px;
+    background:#333333 	url(./inflicted.png) repeat;
 }
 
+h2 {
+  text-align: center;
+  color: white;
+
+}
 .container {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
