@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import hashlib
+=======
+#!/usr/bin/env python3
+
+
+>>>>>>> refs/remotes/origin/master
 # user class- adds, deletes, prints users
 
 class users:
@@ -10,6 +16,7 @@ class users:
       #add a user to the database
       #songID is AUTO_INCREMENT and votes has a default of 0, so no need to worry about them
       def addUser(self, cursor, user, name, password):
+<<<<<<< HEAD
         #Hash the Password
         hash_object = hashlib.sha512(bytes(password, "utf-8"))
         hashPass = hash_object.hexdigest()
@@ -18,6 +25,13 @@ class users:
         #execute the query
         try:
           cursor.execute(query, user, name, hashPass)
+=======
+        #create query statement
+        query = "INSERT INTO Users VALUES (%s, %s, PASSWORD(%s) );"   # + user + "','" + password + "')"
+        #execute the query
+        try:
+          cursor.execute(query, user, name, password)
+>>>>>>> refs/remotes/origin/master
           print ("<p> Executed statement: " + cursor.statement + "</p>")
         except mysql.connector.Error as err:
           #for DEBUG only we'll print the error - we should print some generic message instead for production site
@@ -33,11 +47,16 @@ class users:
 
         if nbRowsInserted > 0:
 
+<<<<<<< HEAD
           return user
+=======
+          return Username
+>>>>>>> refs/remotes/origin/master
         else:
           return False
 
       def authenticateUser(self, cursor, username, password):
+<<<<<<< HEAD
           #query = "SELECT Password FROM Users WHERE Username = '%s';"    #gives hashed password in database
           query = "SELECT Password FROM Users WHERE Username = 'm197102';"    #gives hashed password in database
           cursor.execute(query, username)
@@ -55,9 +74,23 @@ class users:
               #givenpass = cursor.fetchone()
               #print(givenpass)
               #print(type(givenpass))
+=======
+          query = "SELECT Password FROM Users WHERE Username = '%s';"    #gives hashed password in database
+          cursor.execute(query, username)
+          hashedpass = cursor.fetchone()
+
+          if (hashedpass):
+              query2 = "SELECT PASSWORD(%s); "
+              cursor.execeute(query2, password)
+              givenpass = cursor.fetchone()
+>>>>>>> refs/remotes/origin/master
               if (givenpass == hashedpass):
                   return True
               else:
                   return False
           else:
               return False
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master

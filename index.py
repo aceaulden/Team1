@@ -43,16 +43,27 @@ def main():
     cursor = cnx.cursor()
     if len(params) == 3:
         #return
+<<<<<<< HEAD
         returnval = signup(cursor)
     else:
         #return
         returnval = logon(cursor)
+=======
+        signup(cursor)
+    else:
+        #return
+        logon(cursor)
+>>>>>>> refs/remotes/origin/master
     cursor.close()   #commit the transaction
     cnx.commit()  #this is really important otherwise all changes lost
     #close connection
     cnx.close()
+<<<<<<< HEAD
     return returnval
     #quit()
+=======
+    quit()
+>>>>>>> refs/remotes/origin/master
 
 
 #code for inserting a user
@@ -60,7 +71,11 @@ def main():
 
 #if insert button was pushed
 def signup(cursor):
+<<<<<<< HEAD
     #get the artist and du to inform them of the time this error occurred, and the actions you performed just before this error.More information about this error may be available in the server errortitle from the form
+=======
+    #get the artist and title from the form
+>>>>>>> refs/remotes/origin/master
     user = params.getvalue("user")
     password = params.getvalue("pass")
     name = params.getvalue("name")
@@ -81,13 +96,19 @@ def signup(cursor):
 def logon(cursor):
     #cursor = connect()
     #get the artist and title from the form
+<<<<<<< HEAD
     username = params.getvalue("user")
     password = params.getvalue("pass")
+=======
+    username = params.getvalue("Username")
+    password = params.getvalue("Password")
+>>>>>>> refs/remotes/origin/master
     #call authenticaTeUser
     legit = users.authenticateUser(users, cursor, username, password)
 
     if (legit):    #user is in database
         #generate a random session ID cookie that has a set expiration date
+<<<<<<< HEAD
         print ( "Content-type: text/html" )
         print( "Status: 303 See Other" )
         print( "Location: messageBoard.py" )
@@ -108,6 +129,10 @@ def logon(cursor):
         #print('<h3>redirect</h3>')
         #return HttpResponseRedirect('messageBoard.html')        #redirect to messageBoard.html
         print("</body></html>")
+=======
+        print('<h3>redirect</h3>')
+        #return HttpResponseRedirect('messageBoard.html')        #redirect to messageBoard.html
+>>>>>>> refs/remotes/origin/master
     else:
     #user is not in database
         print('<h2>Invalid login</h2>')
