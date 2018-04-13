@@ -2,33 +2,35 @@
 <html>
 <body>
 
-<h1>Super Secret Message Board</h1>  
+<h1>Super Secret Message Board</h1>
 <h2>Login Form</h2>
-  
+
 <!-- Initial form with log in fields and sign up button -->
-<form action="index.py">
+<form action="./index.py" method="get">
+
   Username:<br>
-  <input type="text" name="firstname" value="Username">
+  <input type="text" name="user" value="Username" required>
   <br>
   Password:<br>
-  <input type="hidden" name="password" value="Password">
+  <input type="password" name="pass" value="Password" required>
   <br><br>
-  <input type="submit" value="Login" onlick="/index.py>
+  <input type="submit" value="Login" >
 </form>
-<br>              
-<br>                                         
-<form action="/index.py">
+
+<br>
+<br>
+<form "index.py" method="get">
   Username:<br>
-  <input type="text" name="user" value="Username">
-  <br>                                                 
-  Name: <input type="text" name="name" value="Name">
-  <br>                                             
-  Password: <input type="hidden" name="password" value="Password">
+  <input type="text" name="user" value="Username" required>
   <br>
-  <input type="button" value="Sign Up" onclick="/index.py">
+  Name: <br><input type="text" name="name" value="Name" required>
+  <br>
+  Password: <br><input type="pass" name="password" value="Password" required>
+  <br>
+  <input type="button" value="Sign Up" onclick="index.py">
 </form>
 
 
-                                                                                                               
+
 </body>
 </html>
